@@ -5,21 +5,20 @@ export default {
   props: [],
   data () {
     return {
-
+        id:this.$route.params.id  
     }
   },
+  
   computed: {
 
   },
   mounted () {
-
+    console.log(this.id);
   },
   methods: {
 
   },
-  beforeMount(){
-    
-  }
+ 
 }
 
 

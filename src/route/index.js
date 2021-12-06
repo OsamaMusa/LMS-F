@@ -12,6 +12,8 @@ import Users from '../components/Users'
 import Accounts from '../components/Accounts'
 import Finance from '../components/Finance'
 import Signup from '../pages/Signup'
+import AccessDenied from '../pages/AccessDenied'
+import Claims from '../Enums/Claims'
 Vue.use(VueRouter)
 
 const routes = [
@@ -28,49 +30,129 @@ const routes = [
     children: [
       {
         path: 'reservation',
-        component: Reservations
+        component: Reservations,
+         beforeEnter : (to, from, next) =>{
+
+          var user = JSON.parse(localStorage.getItem('user')) 
+          var role = user.roleID
+          console.log("role is :"+role)
+
+          if (role != Claims && role != Claims.Admin) {
+             next("AccessDenied");
+          }
+          next();
+        }
       },
       {
         path: 'book',
         name: 'book',
-        component: Books
+        component: Books,
+         beforeEnter : (to, from, next) => {
+
+          var user = JSON.parse(localStorage.getItem('user')) 
+          var role = user.roleID
+          console.log("role is :"+role)
+
+          if (role != '2' && role != '1') {
+             next("AccessDenied");
+          }
+          next();
+        }
       },
       {
         path: 'customer',
-        component: Customers
+        component: Customers,
+         beforeEnter : (to, from, next) => {
+
+          var user = JSON.parse(localStorage.getItem('user')) 
+          var role = user.roleID
+          console.log("role is :"+role)
+
+          if (role != '2' && role != '1') {
+             next("AccessDenied");
+          }
+          next();
+        }
       },
       {
         path: 'publisher',
         name: 'publisher',
-        component: Publishers
+        component: Publishers,
+         beforeEnter : (to, from, next) => {
+
+          var user = JSON.parse(localStorage.getItem('user')) 
+          var role = user.roleID
+          console.log("role is :"+role)
+
+          if (role != '2' && role != '1') {
+             next("AccessDenied");
+          }
+          next();
+        }
       },
       {
         path: 'report',
         name: 'report',
-        component: Reports
+        component: Reports,
+         beforeEnter : (to, from, next) => {
+
+          var user = JSON.parse(localStorage.getItem('user')) 
+          var role = user.roleID
+          console.log("role is :"+role)
+
+          if (role != '1') {
+             next("AccessDenied");
+          }
+          next();
+        }
       },
       {
         path: 'user',
         name: 'user',
-        component: Users
+        component: Users,
+         beforeEnter : (to, from, next) => {
+
+          var user = JSON.parse(localStorage.getItem('user')) 
+          var role = user.roleID
+          console.log("role is :"+role)
+
+          if (role != '2' && role != '1') {
+             next("AccessDenied");
+          }
+          next();
+        }
       },
       {
-        path: 'account',
+        path: 'account/:id',
         name: 'account',
         component: Accounts
       },
       {
         path: 'finance',
         name: 'finance',
-        component: Finance
+        component: Finance,
+         beforeEnter : (to, from, next) => {
+
+          var user = JSON.parse(localStorage.getItem('user')) 
+          var role = user.roleID
+          console.log("role is :"+role)
+          if (role != '3' && role != '1') {
+             next("AccessDenied");
+          }
+          next();
+        }
       }
     ]
   },
- 
   {
     path: '/sign-up',
     name: 'sign-up',
     component: Signup
+  },
+  {
+    path: '/AccessDenied',
+    name: 'AccessDenied',
+    component: AccessDenied
   },
   {
     path: '*',

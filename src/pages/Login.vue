@@ -15,7 +15,7 @@
                          type="error"
                          v-show="this.errors"
                          >
-                            Error at <strong>username</strong> or <strong>password</strong> 
+                            {{errorString}} 
                         </v-alert>
                         <v-form>
                            <v-text-field
@@ -60,7 +60,8 @@ export default {
        return{
           username:'',
           password:'',
-          errors:false
+          errors:false,
+          errorString :''
 
        }
    },
@@ -74,15 +75,30 @@ export default {
                  .then( response =>{
                     if(response.status == 200){
                           localStorage.setItem('Token',response.data);
-                          window.location.href = "/reservation"
+                          
+                          axios.get('/api/Users/'+this.username,{
+                         
+                             headers: {
+                                     Authorization: 'Bearer ' + response.data 
+                               }
+
+                          }).then(res => {
+                            if(res.status == 200)
+                              console.log(res.data)
+                              localStorage.setItem('user',JSON.stringify(res.data))
+                              window.location.href = "/"
+
+                             
+                          })
+                          
                     }})
                     .catch(err => {
-                        if(err){
-                            this.errors = true
-                            this.username = ''
-                            this.password = ''
-                        }
-
+                       if(err){
+                           this.errors = true
+                           this.username = ''
+                           this.password = ''
+                           this.errorString = `Error !!`
+                       }
                     })
                     
         }
