@@ -13,7 +13,6 @@ import Accounts from '../components/Accounts'
 import Finance from '../components/Finance'
 import Signup from '../pages/Signup'
 import AccessDenied from '../pages/AccessDenied'
-import Claims from '../Enums/Claims'
 Vue.use(VueRouter)
 
 const routes = [
@@ -27,6 +26,13 @@ const routes = [
     {
     path: '/',
     component :Dashboard,
+    beforeEnter : (to, from, next) =>{
+
+      if (JSON.parse(localStorage.getItem('user')) == undefined) {
+         next("log-in");
+      }
+      next();
+    },
     children: [
       {
         path: 'reservation',
@@ -37,7 +43,7 @@ const routes = [
           var role = user.roleID
           console.log("role is :"+role)
 
-          if (role != Claims && role != Claims.Admin) {
+          if (role != '4' && role != '1') {
              next("AccessDenied");
           }
           next();
