@@ -13,6 +13,8 @@ import Accounts from '../components/Accounts'
 import Finance from '../components/Finance'
 import Signup from '../pages/Signup'
 import AccessDenied from '../pages/AccessDenied'
+import WelcomeNewUser from '../components/WelcomeNewUser'
+import State from '../Enums/State'
 Vue.use(VueRouter)
 
 const routes = [
@@ -41,9 +43,8 @@ const routes = [
 
           var user = JSON.parse(localStorage.getItem('user')) 
           var role = user.roleID
-          console.log("role is :"+role)
 
-          if (role != '4' && role != '1') {
+          if (role != State.Librarian && role != State.Admin) {
              next("AccessDenied");
           }
           next();
@@ -57,9 +58,8 @@ const routes = [
 
           var user = JSON.parse(localStorage.getItem('user')) 
           var role = user.roleID
-          console.log("role is :"+role)
 
-          if (role != '2' && role != '1') {
+          if (role != State.CTO && role != State.Admin) {
              next("AccessDenied");
           }
           next();
@@ -72,9 +72,8 @@ const routes = [
 
           var user = JSON.parse(localStorage.getItem('user')) 
           var role = user.roleID
-          console.log("role is :"+role)
 
-          if (role != '2' && role != '1') {
+          if (role != State.CTO && role != State.Admin) {
              next("AccessDenied");
           }
           next();
@@ -88,9 +87,23 @@ const routes = [
 
           var user = JSON.parse(localStorage.getItem('user')) 
           var role = user.roleID
-          console.log("role is :"+role)
 
-          if (role != '2' && role != '1') {
+          if (role != State.CTO && role != State.Admin) {
+             next("AccessDenied");
+          }
+          next();
+        }
+      },
+      {
+        path: 'welcome-new-user',
+        name: 'welcome-new-user',
+        component: WelcomeNewUser,
+         beforeEnter : (to, from, next) => {
+
+          var user = JSON.parse(localStorage.getItem('user')) 
+          var role = user.roleID
+
+          if ( role != State.newUser) {
              next("AccessDenied");
           }
           next();
@@ -104,9 +117,8 @@ const routes = [
 
           var user = JSON.parse(localStorage.getItem('user')) 
           var role = user.roleID
-          console.log("role is :"+role)
 
-          if (role != '1') {
+          if (role != State.Admin) {
              next("AccessDenied");
           }
           next();
@@ -120,9 +132,8 @@ const routes = [
 
           var user = JSON.parse(localStorage.getItem('user')) 
           var role = user.roleID
-          console.log("role is :"+role)
 
-          if (role != '2' && role != '1') {
+          if ( role != State.Admin) {
              next("AccessDenied");
           }
           next();
@@ -142,7 +153,7 @@ const routes = [
           var user = JSON.parse(localStorage.getItem('user')) 
           var role = user.roleID
           console.log("role is :"+role)
-          if (role != '3' && role != '1') {
+          if (role != State.Finance && role != State.Admin) {
              next("AccessDenied");
           }
           next();

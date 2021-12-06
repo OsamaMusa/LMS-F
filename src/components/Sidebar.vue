@@ -11,7 +11,7 @@
           <v-img src="https://randomuser.me/api/portraits/men/85.jpg"></v-img>
         </v-list-item-avatar>
      </router-link>
-        <v-list-item-title> hello {{ user.fullName }}</v-list-item-title>
+        <v-list-item-title> Welcome {{ user.username }}</v-list-item-title>
    
         <v-btn
           icon
@@ -30,7 +30,7 @@
           v-for="item in items"
           :key="item.title"
           :to="item.link"
-           v-show="item.role.indexOf(user.roleID) > -1"
+           v-show="item.role.includes(user.roleID)" 
        
         >
        
@@ -54,29 +54,31 @@
 
 <script>
 import '@fortawesome/fontawesome-free'
-
+import State from '../Enums/State'
 export default {
 
     data(){
         return {
-        user : JSON.parse(localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')) :{fullName:'test user'} ,
+        user : JSON.parse(localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')) :{username:'test user'} ,
+        
         width : (window.innerWidth > 0) ? window.innerWidth : screen.width,
         drawer: true,
         items: [
-          { title: 'Reservations' ,icon:'mdi-send', link : '/reservation' ,role:[1,4]},
-          { title: 'Books' ,icon:'mdi-book-open', link:'/book' ,role:[1,2]},
-          { title: 'Customers' ,icon:'mdi-account', link:'/customer' ,role:[1,2]},
-          { title: 'Publishers' , icon:'mdi-briefcase-download', link:'/publisher' ,role:[1,2]},
-          { title: 'Reports' , icon:'mdi-chart-bar',link:'/report' ,role:[1]},
-          { title: 'Permissions & Rols' ,icon:'mdi-key-variant', link:'/00' ,role:[1]},
-          { title: 'Finance' , icon:'mdi-bank', link:'/finance' ,role:[1,3]},
-          { title: 'Users',icon:'mdi-human-male-female', link:'/user' ,role:[1,2]},
+          { title: 'Reservations' ,icon:'mdi-send', link : '/reservation' ,role:[State.Admin,State.Librarian]},
+          { title: 'Books' ,icon:'mdi-book-open', link:'/book' ,role:[State.Admin,State.CTO]},
+          { title: 'Customers' ,icon:'mdi-account', link:'/customer' ,role:[State.Admin,State.CTO]},
+          { title: 'Publishers' , icon:'mdi-briefcase-download', link:'/publisher' ,role:[State.Admin,State.CTO]},
+          { title: 'Reports' , icon:'mdi-chart-bar',link:'/report' ,role:[State.Admin]},
+          { title: 'Permissions & Rols' ,icon:'mdi-key-variant', link:'/00' ,role:[State.Admin]},
+          { title: 'Finance' , icon:'mdi-bank', link:'/finance' ,role:[State.Admin,State.Finance]},
+          { title: 'Users',icon:'mdi-human-male-female', link:'/user' ,role:[State.Admin,State.CTO]},
+          { title: 'Contact Us ',icon:'mdi-briefcase-download', link:'/welcome-new-user' ,role:[State.newUser]},
         ],
         mini: false,
             }
     },
     mounted(){
-       console.log(this.user.fullName);
+      
     }
   
 }
