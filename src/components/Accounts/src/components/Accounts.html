@@ -1,7 +1,32 @@
+<div class="container rounded bg-white">
+  <div class="row">
+      <div class="col-md-3 border-right">
+          <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+            <img class="rounded-circle mt-5" width="150px" src="https://randomuser.me/api/portraits/men/85.jpg">
+             <hr/>  
+            <span class="font-weight-bold">{{user.username}}</span>
+           </div>
+      </div>
+      <div class="col-md-5 border-right">
+          <div class="">
+              <div class="d-flex justify-content-between align-items-center ">
+                  <h4 class="text-right">My Profile</h4>
+              </div>
+            <form>
 
-<section class="src-components-accounts">
-  <h1>src-components-accounts Component</h1>
-  <b>welcome user no : {{this.$route.params.id}}</b>
-  
-</section>
+              <div class="row mt-3">
+                  <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control" v-model="phone" ></div>
+                  <div class="col-md-12"><label class="labels">Address </label><input type="text" class="form-control" v-model="address" ></div>
+                  <div class="col-md-12"><label class="labels">Department</label><input type="text" class="form-control" v-model="department" ></div>
+                  <div class="col-md-12"><label class="labels">BirthDate</label><input type="date" class="form-control" v-model="dob" ></div>
+              </div>
+            </form>
+            <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button" @click="editProfile">Edit Profile</button></div>
 
+          </div>
+      </div>
+    
+  </div>
+</div>
+</div>
+</div>

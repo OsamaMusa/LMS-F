@@ -15,6 +15,8 @@ import Signup from '../pages/Signup'
 import AccessDenied from '../pages/AccessDenied'
 import WelcomeNewUser from '../components/WelcomeNewUser'
 import State from '../Enums/State'
+import ResetPassword from '../components/ResetPassword'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -36,6 +38,19 @@ const routes = [
       next();
     },
     children: [
+      {
+        path: 'reset-password',
+        component: ResetPassword,
+         beforeEnter : (to, from, next) =>{
+
+          var user = JSON.parse(localStorage.getItem('user')) 
+          
+          if (user == undefined) {
+             next("AccessDenied");
+          }
+          next();
+        }
+      },
       {
         path: 'reservation',
         component: Reservations,

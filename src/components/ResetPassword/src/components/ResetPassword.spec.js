@@ -1,28 +1,28 @@
 import Vue from 'vue';
-import SrccomponentsrequsetComponent from './index.vue';
+import SrccomponentsresetpasswordComponent from './index.vue';
 
 // Here are some Jasmine 2.0 tests, though you can
 // use any test runner / assertion library combo you prefer
-describe('SrccomponentsrequsetComponent', () => {
+describe('SrccomponentsresetpasswordComponent', () => {
   // Inspect the raw component options
   it('has a created hook', () => {
-    // expect(typeof SrccomponentsrequsetComponent.created).toBe('function');
+    // expect(typeof SrccomponentsresetpasswordComponent.created).toBe('function');
   })
   // Evaluate the results of functions in
   // the raw component options
   it('sets the correct default data', () => {
-    // expect(typeof SrccomponentsrequsetComponent.data).toBe('function')
-    // const defaultData = SrccomponentsrequsetComponent.data();
+    // expect(typeof SrccomponentsresetpasswordComponent.data).toBe('function')
+    // const defaultData = SrccomponentsresetpasswordComponent.data();
     // expect(defaultData.message).toBe('hello!');
   })
   // Inspect the component instance on mount
   it('correctly sets the message when created', () => {
-    // const vm = new Vue(SrccomponentsrequsetComponent).$mount();
+    // const vm = new Vue(SrccomponentsresetpasswordComponent).$mount();
     // expect(vm.message).toBe('bye!');
   })
   // Mount an instance and inspect the render output
   it('renders the correct message', () => {
-    // const Ctor = Vue.extend(SrccomponentsrequsetComponent);
+    // const Ctor = Vue.extend(SrccomponentsresetpasswordComponent);
     // const vm = new Ctor().$mount();
     // expect(vm.$el.textContent).toBe('bye!');
   })

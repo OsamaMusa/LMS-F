@@ -47,7 +47,6 @@ export default {
   created () {
   },
   mounted () {
-    console.log("token :"+localStorage.getItem('Token'))
           this.initialize()    
   },
   
@@ -58,7 +57,6 @@ export default {
     .get('AllBooks')
     .then(
       response => (this.desserts = response.data),
-      console.log(this.desserts)
       )
     }
 

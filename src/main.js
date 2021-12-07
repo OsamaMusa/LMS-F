@@ -5,7 +5,6 @@ import router from './route/index'
 import '@fortawesome/fontawesome-free'
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import enums from 'vue-enums'
 
 Vue.config.productionTip = false
 axios.defaults.baseURL='https://localhost:44358/'
@@ -17,4 +16,3 @@ new Vue({
   router,
   render: h => h(App)
 }).$mount('#app')
-Vue.use(enums)

@@ -44,6 +44,7 @@
                               label="BirthDate"
                               type="date"
                            ></v-text-field>
+                             
                             <v-text-field
                                 v-model="password"
                                 :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"

@@ -5,12 +5,11 @@
       dark
       src='../assets/background.jpg'
     >
-    <b-button v-b-toggle.sidebar-variant>
-           LMS
-     </b-button>
-      <v-spacer></v-spacer>
     
-          <v-btn icon>
+      <b>LMS</b>
+    
+      <v-spacer></v-spacer>
+      <v-btn icon>
         <v-icon @click="signOut">mdi-export</v-icon>
       </v-btn>
     </v-app-bar>
@@ -19,6 +18,7 @@
 <script>
   export default {
     name: 'LMSHeader',
+    
     data() {
        return{
 

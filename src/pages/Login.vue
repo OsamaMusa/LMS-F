@@ -21,7 +21,7 @@
                            <v-text-field
                               id="username"
                               v-model="username"
-                              label="Login"
+                              label="Username"
                               type="text"
                            ></v-text-field>
                             <v-text-field
