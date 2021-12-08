@@ -9,6 +9,7 @@
                         <v-toolbar-title>LMS</v-toolbar-title>
                      </v-toolbar>
                      <v-card-text>
+                       
                          <v-alert
                          dense
                          outlined
@@ -17,6 +18,7 @@
                          >
                             {{errorString}} 
                         </v-alert>
+                         
                         <v-form>
                            <v-text-field
                               id="username"
@@ -32,14 +34,21 @@
                                 label="Password"                                
                                 @click:append="show = !show"
                                 ></v-text-field>
-                       
+                              
 
                         </v-form>
                      </v-card-text>
                      <v-card-actions>
                          <router-link to="/sign-up">Sign Up</router-link>
                         <v-spacer></v-spacer>
-                        <v-btn color="primary" @click="signIn">Log in</v-btn>
+                        <v-btn color="primary" @click="signIn" v-show="!isLoading">
+                           Log in
+                        </v-btn>
+                         <v-progress-circular
+                              v-show="isLoading"
+                              color="primary"
+                              indeterminate
+                          ></v-progress-circular>
                      </v-card-actions>
                   </v-card>
                </v-flex>
@@ -64,15 +73,19 @@ export default {
           password:'',
           hasErrors:false,
           errorString :'',
+          isLoading :false
 
        }
    },
    methods:{
        signIn(){
+           this.isLoading= true
            if(this.username=='' || this.password=='')
              {
                 this.hasErrors=true;
                 this.errorString = 'Error ! , please fill all data'
+                this.isLoading =  false
+
                 return
              }
 
@@ -97,6 +110,7 @@ export default {
                               localStorage.setItem('user',user)
                               console.log(user)
                               window.location.href = "/"
+                              
 
                             }
                              
@@ -109,9 +123,10 @@ export default {
                            this.username = ''
                            this.password = ''
                            this.errorString = `Error !!`
+                            this.isLoading =  false
                        }
                     })
-                    
+                   
         }
      }
    }

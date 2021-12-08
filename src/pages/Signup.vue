@@ -61,7 +61,12 @@
                      <v-card-actions>
                          <router-link to="/log-in"> or <b>Login</b></router-link>
                         <v-spacer></v-spacer>
-                        <v-btn color="primary" @click="signUp">Sign Up</v-btn>
+                        <v-btn color="primary" @click="signUp" v-show="!isLoading">Sign Up</v-btn>
+                        <v-progress-circular
+                              v-show="isLoading"
+                              color="primary"
+                              indeterminate
+                         ></v-progress-circular>
                      </v-card-actions>
                   </v-card>
                </v-flex>
@@ -89,15 +94,20 @@ export default {
           dob:'',
           hasErrors:false,
           errorString :'',
+          isLoading : false
 
        }
    },
    methods:{
        signUp(){
+         this.isLoading =true
+
            if(this.username=='' || this.password=='' || this.phone=='' || this.address=='' || this.dob =='')
              {
                 this.hasErrors=true;
                 this.errorString = 'Error ! , please fill all data'
+                this.isLoading =false
+
                 return
              }
             axios.get('/api/Users/check-username/'+this.username,).then(res => {
@@ -130,6 +140,8 @@ export default {
                            this.phone=''
                            this.dob=''
                            this.errorString = `Error !!`
+                           this.isLoading =false
+
                        }
                     })
 
@@ -140,8 +152,12 @@ export default {
                                    this.errorString='Error! , this username is already token'
                             }
                              
+                          }).catch(err=>{
+                              console.log(err)
+                              this.isLoading =false
+
                           })
-        
+
        }
    }
 }
