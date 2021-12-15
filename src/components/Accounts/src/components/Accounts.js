@@ -5,6 +5,7 @@ export default {
   props: [],
   data () {
     return {
+      isEnabled :true,
       user : JSON.parse(localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')) :{username:'test user'} ,       
       phone:JSON.parse(localStorage.getItem('user')).phone,
       address:JSON.parse(localStorage.getItem('user')).address,
@@ -48,6 +49,9 @@ export default {
         }
 
 
+   },
+   enable(){
+     this.isEnabled = !this.isEnabled
    }
   },
  
