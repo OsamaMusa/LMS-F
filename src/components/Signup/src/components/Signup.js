@@ -1,11 +1,13 @@
 import axios from 'axios';
 import SignUpUser from '@/Models/SignUpUser'
+
 export default {
    name: 'sign-in',
- 
+
    props: {
     
    },
+   
    data(){
        return{
           show: false,

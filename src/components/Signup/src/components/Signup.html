@@ -12,7 +12,7 @@
                      dense
                      outlined
                      type="error"
-                     v-show="this.hasErrors"
+                     v-if="this.hasErrors"
                      >
                         {{errorString}} 
                     </v-alert>
@@ -60,9 +60,9 @@
                  <v-card-actions>
                      <router-link to="/log-in"> or <b>Login</b></router-link>
                     <v-spacer></v-spacer>
-                    <v-btn color="primary" @click="signUp" v-show="!isLoading">Sign Up</v-btn>
+                    <v-btn color="primary" @click="signUp" v-if="!isLoading">Sign Up</v-btn>
                     <v-progress-circular
-                          v-show="isLoading"
+                          v-if="isLoading"
                           color="primary"
                           indeterminate
                      ></v-progress-circular>
