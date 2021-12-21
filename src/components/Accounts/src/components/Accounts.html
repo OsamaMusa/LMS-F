@@ -1,32 +1,55 @@
 <div class="container rounded bg-white">
+
   <div class="row">
       <div class="col-md-3 border-right">
           <div class="d-flex flex-column align-items-center text-center p-3 py-5">
             <img class="rounded-circle mt-5" width="150px" src="https://randomuser.me/api/portraits/men/85.jpg">
              <hr/>  
             <span class="font-weight-bold">{{user.username}}</span>
+            
            </div>
       </div>
       <div class="col-md-5 border-right">
           <div class="">
+        
               <div class="d-flex justify-content-between align-items-center ">
-                  <h4 class="text-right">My Profile</h4>
-                  <spacer></spacer>
-                  <button class="btn btn-primary" @click='enable'>
-                    <b v-show='!isEnabled'> Enable</b>
-                    <b v-show='isEnabled'> Disable</b>
+                  <h4 class="text-right">My Profile</h4> 
+                  
+                  
+                  <button class="btn" @click='enable'>
+                    <b v-show='!isEnabled'> <i class="mdi mdi-account-check"></i> </b>
+                    <b v-show='isEnabled'> <i class="mdi mdi-account-key"></i> </b>
+
                   </button>
+      
               </div>
-            <form >
+            <form>
 
               <div class="row mt-3">
-                  <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control" v-model="phone" :disabled="!isEnabled ? true :false" ></div>
-                  <div class="col-md-12"><label class="labels">Address </label><input type="text" class="form-control" v-model="address" :disabled="!isEnabled ? true :false"></div>
-                  <div class="col-md-12"><label class="labels">Department</label><input type="text" class="form-control" v-model="department" :disabled="!isEnabled ? true :false"></div>
+                  <div class="col-md-12">
+                    <label class="labels">
+                      Mobile Number
+                    </label>
+                    <input type="text" class="form-control" v-model="phone" :disabled="!isEnabled ? true :false" >
+                  </div>
+                  <div class="col-md-12">
+                    <label class="labels">
+                      Address 
+                    </label>
+                    <input type="text" class="form-control" v-model="address" :disabled="!isEnabled ? true :false"> 
+                   
+                  </div>
+                  <div class="col-md-12"><label class="labels">Department</label><input type="text" class="form-control" v-model="department" disabled="true"></div>
                   <div class="col-md-12"><label class="labels">BirthDate</label><input type="date" class="form-control" v-model="dob" :disabled="!isEnabled ? true :false" ></div>
               </div>
             </form>
-            <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button" @click="editProfile">Edit Profile</button></div>
+            <div class="mt-5 text-center">
+              <button class="btn btn-primary profile-button" type="button" @click="editProfile" >
+                 Edit Profile
+              </button>
+               
+            </div>
+
 
           </div>
       </div>

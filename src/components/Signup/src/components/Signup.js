@@ -42,7 +42,7 @@ export default {
                return
              }
              var user = new SignUpUser(this.username,this.password,this.phone,this.address,this.dob)
-            axios.get('/api/Users/check-username/'+this.username,).then(res => {
+            axios.get('/api/Users/check-username/'+this.username).then(res => {
             if(res.data != true){
              axios.post('api/Users',
                user
@@ -70,7 +70,7 @@ export default {
                     })
 
                             }else{
-                             console.log(' exist')
+                                console.log(' exist')
 
                                    this.hasErrors =true;
                                    this.errorString='Error! , this username is already token'

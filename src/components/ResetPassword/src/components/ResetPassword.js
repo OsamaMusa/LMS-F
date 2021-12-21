@@ -37,6 +37,10 @@ export default {
         if(this.reNewPassword != this.NewPassword){
             this.hasErrors =true;
             this.errorString = 'Error ! ,new password and re-password is not matched '
+        }else if(this.reNewPassword.length <8){
+          this.hasErrors =true;
+          this.errorString = 'Error ! , password must be over 8 digit'
+
         }else{
             
           axios.post('api/Users/reset-password',
