@@ -5,12 +5,13 @@ export default {
   props: [],
   data () {
     return {
-      isEnabled :true,
+      isEnabled :false,
       user : JSON.parse(localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')) :{username:'test user'} ,       
       phone:JSON.parse(localStorage.getItem('user')).phone,
       address:JSON.parse(localStorage.getItem('user')).address,
       department:JSON.parse(localStorage.getItem('user')).department,
       dob:JSON.parse(localStorage.getItem('user')).birthDate.split('T')[0],
+
     }
   },
   
@@ -22,11 +23,15 @@ export default {
   },
   methods: {
    editProfile(){
-     if( this.phone == '' || this.address =='' ||  this.department == '' || this.dob =='')
+     if( this.phone == '' || this.address =='' ||  this.department == '' || this.dob =='' )
         {
           alert('You must fill all data !!')
           return
         }else{
+          if(!this.isEnabled){
+            alert('You must enable data !!')
+            return;
+          }
           this.user.phone = this.phone
           this.user.address = this.address
           this.user.department = this.department

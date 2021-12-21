@@ -2,8 +2,9 @@ import Vue from 'vue'
 import App from './App.vue'
 import vuetify from './plugins/vuetify'
 import router from './route/index'
-import '@fortawesome/fontawesome-free'
 import axios from 'axios'
+
+import '@fortawesome/fontawesome-free'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 Vue.config.productionTip = false
