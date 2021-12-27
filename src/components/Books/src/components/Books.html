@@ -1,1 +1,137 @@
-<h1>book</h1>
+<div class="card text-center m-3">
+    <h3 class="card-header">{{current}}</h3>
+    <ul>
+        <li><a href="#" @click="all"><span >All</span></a></li>
+        <li><a href="#" @click="avilable"><span >Avilable</span></a></li>
+        <li><a href="#" @click="add"><span >Add</span></a></li>
+        <li><a href="#" @click="search"><span >Search ID</span></a></li>
+      </ul>
+<div v-if="current == 'All Books' || current=='Avilable'">
+    <div class="card-body">
+        <div class="items" v-for="book in Books" >
+            <div class="item">
+                {{book.id}}:
+                {{book.title}}
+            </div>
+            <div class="item">
+                {{book.author}}
+            </div>
+            <div class="item">
+                {{book.avilable}}
+            </div>
+            <div class="item">
+                <a href="#" class="delete" v-on:click="del(book.id)"><v-icon style="color: red;"> mdi-delete</v-icon></a>
+                <a href="#" class="edit" v-on:click="edit(book.id)"><v-icon > mdi-lead-pencil</v-icon></a>
+            </div>
+        </div>
+    </div>
+    <div class="pagination">
+        <a >&laquo;</a>
+        <a v-for="page in pageOfItems" href="#" @click="onChangePage(page)">{{page}}</a>
+        <a >&raquo;</a>
+    </div>
+</div>
+<div v-if="current == 'Search by ID'">
+    <div class="items">
+        <input class="input" v-model="id" placeholder="ID">
+        
+    </div>
+    <div class="items"style=" justify-content: center;">
+        <a
+        href="#"
+        class="button-21"
+        @click="search()"
+      >search</a>
+    </div>
+    <div v-if="Books.lenght != 0" style="margin-top: 12px;">
+
+
+        <div class="items" v-for="book in Books" >
+            <div class="item">
+                {{book.id}}:
+                {{book.title}}
+            </div>
+            <div class="item">
+                {{book.author}}
+            </div>
+            <div class="item">
+                {{book.avilable}}
+            </div>
+            <div class="item">
+                <a href="#" class="delete" v-on:click="del(book.id)"><v-icon style="color: red;"> mdi-delete</v-icon></a>
+                <a href="#" class="edit" v-on:click="edit(book.id)"><v-icon > mdi-lead-pencil</v-icon></a>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+<div v-if="current == 'Add'">
+
+
+    <div class="items">
+    
+        <input class="input" v-model="title" placeholder="title" required>
+        
+    </div>
+    <div class="items">
+    
+        <input class="input" v-model="author" placeholder="author" required>
+        
+    </div>
+    <div class="items">
+    
+        <input class="input" v-model="price" placeholder="price" required>
+        
+    </div>
+    <div class="items">
+    
+        <input class="input" v-model="publisherid" placeholder="publisher id" required>
+        
+    </div>
+    <div class="items">
+    
+        <input class="input" v-model="userid" placeholder="user id" required>
+        
+    </div>
+    <div class="items"style=" justify-content: center;">
+        <a
+        href="#"
+        class="button-21"
+        @click="add()"
+      >add</a>
+    </div>
+
+</div>
+
+
+<div v-if="current == 'Edit' && Books.lenght != 0">
+
+
+    <div class="items">
+    
+        <input class="input" v-model="title" placeholder="title" required>
+        
+    </div>
+    <div class="items">
+    
+        <input class="input" v-model="author" placeholder="author" required>
+        
+    </div>
+    <div class="items">
+    
+        <input class="input" v-model="price" placeholder="price" required>
+        
+    </div>
+
+    <div class="items"style=" justify-content: center;">
+        <a
+        href="#"
+        class="button-21"
+        @click="edit(id)"
+      >save</a>
+    </div>
+
+</div>
+</div>
