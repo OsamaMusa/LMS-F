@@ -20,10 +20,12 @@ export default {
         id:0,
         author : '',
         title:'',
-
+        quantity:0,
+        aquantity:0,
         price:0.0,
         publisherid:1,
         userid:1,
+        cpage:0,
 
      }
   },
@@ -33,8 +35,18 @@ export default {
   },
 
   methods: {
+    npage(){
+      if(this.cpage+1<this.pageOfItems.length){
+        this.onChangePage(this.cpage+1)
+      }
+    },
+    ppage(){
+      if(this.cpage-1>=0){
+        this.onChangePage(this.cpage-1)
+      }
+    },
     onChangePage(page) {
-      console.log(page);
+      this.cpage=page;
       let chunk = 10;
       this.Books = this.array.slice(page*chunk, (page*chunk) + chunk);
       console.log(this.Books);
@@ -116,7 +128,7 @@ export default {
       if(this.current == "Add")
       {
         
-      var book = new Book(0,this.author,this.title,0,0,this.price,this.publisherid,this.userid);
+      var book = new Book(0,this.author,this.title,this.aquantity,this.quantity,this.price,this.publisherid,this.userid);
       axios.post('/Book',book, {
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('Token')
@@ -137,6 +149,8 @@ export default {
           this.price=0.0;
           this.publisherid=1;
           this.userid=1;
+          this.aquantity=0;
+          this.quantity=0;
           this.Books=[];
         }
     
@@ -150,7 +164,7 @@ export default {
         }
       }).then(res => {console.log(res);
           if (res.status == 200) {
-            this.componentKey+=1;
+            this.all();
           }
         });
     },
@@ -159,7 +173,7 @@ export default {
       {      
 
 
-      var book = new Book(bid,this.author,this.title,this.Books[0].Avilable,this.Books[0].TotalNum,0,this.price,this.publisherid,this.userid);
+      var book = new Book(bid,this.author,this.title,this.aquantity,this.quantity,this.price,this.publisherid,this.userid);
       axios.put('/Book',book, {
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('Token')
@@ -188,7 +202,8 @@ export default {
                   this.id=bid;
                   this.author=this.Books[0].author;
                   this.title=this.Books[0].title;
-
+                  this.aquantity=this.Books[0].avilable;
+                  this.quantity=this.Books[0].totalNum;
                   this.price=this.Books[0].price;
                   this.publisherid=this.Books[0].publisherID;
                   this.userid=this.Books[0].userID;}
