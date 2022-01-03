@@ -8,6 +8,25 @@
       </ul>
 <div v-if="current == 'All Books' || current=='Avilable'">
     <div class="card-body">
+        <div class="items"  >
+            <div class="item">
+                <b>Id:Title</b>
+                
+            </div>
+            <div class="item">
+                <b>Author</b>
+               
+            </div>
+            <div class="item">
+                <b>Avilable</b>
+            </div>
+            <div class="item">
+               <b>Tolotal Number</b>
+            </div>
+            <div class="item">
+                <b>Actions</b>
+            </div>
+        </div>
         <div class="items" v-for="book in Books" >
             <div class="item">
                 {{book.id}}:
@@ -20,15 +39,18 @@
                 {{book.avilable}}
             </div>
             <div class="item">
+                {{book.totalNum}}
+            </div>
+            <div class="item">
                 <a href="#" class="delete" v-on:click="del(book.id)"><v-icon style="color: red;"> mdi-delete</v-icon></a>
                 <a href="#" class="edit" v-on:click="edit(book.id)"><v-icon > mdi-lead-pencil</v-icon></a>
             </div>
         </div>
     </div>
     <div class="pagination">
-        <a >&laquo;</a>
-        <a v-for="page in pageOfItems" href="#" @click="onChangePage(page)">{{page}}</a>
-        <a >&raquo;</a>
+        <a href="#" v-on:click="ppage()">&laquo;</a>
+        <a v-for="page in pageOfItems" href="#" @click="onChangePage(page)"><b v-if="page==cpage">{{page}}</b> <span v-else>{{page}}</span></a>
+        <a href="#" v-on:click="npage()">&raquo;</a>
     </div>
 </div>
 <div v-if="current == 'Search by ID'">
@@ -45,7 +67,25 @@
     </div>
     <div v-if="Books.lenght != 0" style="margin-top: 12px;">
 
-
+        <div class="items"  >
+            <div class="item">
+                <b>Id:Title</b>
+                
+            </div>
+            <div class="item">
+                <b>Author</b>
+               
+            </div>
+            <div class="item">
+                <b>Avilable</b>
+            </div>
+            <div class="item">
+               <b>Tolotal Number</b>
+            </div>
+            <div class="item">
+                <b>Actions</b>
+            </div>
+        </div>
         <div class="items" v-for="book in Books" >
             <div class="item">
                 {{book.id}}:
@@ -56,6 +96,9 @@
             </div>
             <div class="item">
                 {{book.avilable}}
+            </div>
+            <div class="item">
+                {{book.totalNum}}
             </div>
             <div class="item">
                 <a href="#" class="delete" v-on:click="del(book.id)"><v-icon style="color: red;"> mdi-delete</v-icon></a>
@@ -72,27 +115,43 @@
 
     <div class="items">
     
-        <input class="input" v-model="title" placeholder="title" required>
+        <b class="input1">Title</b><input class="input" v-model="title" placeholder="title"  pattern="[A-Za-z]+" required>
         
     </div>
     <div class="items">
     
-        <input class="input" v-model="author" placeholder="author" required>
+        <b class="input1">Author</b>
+        <input class="input" v-model="author" placeholder="author" pattern="[A-Za-z]+" required>
         
     </div>
     <div class="items">
     
-        <input class="input" v-model="price" placeholder="price" required>
+        <b class="input1">All</b>
+        <input class="input" v-model="quantity" placeholder="quantity" pattern="[0-9]+" required>
         
     </div>
     <div class="items">
     
-        <input class="input" v-model="publisherid" placeholder="publisher id" required>
+        <b class="input1">Avilable</b>
+        <input class="input" v-model="aquantity" placeholder="avilable" pattern="[0-9]+" required>
         
     </div>
     <div class="items">
     
-        <input class="input" v-model="userid" placeholder="user id" required>
+        <b class="input1">Price</b>
+        <input class="input" v-model="price" placeholder="price" pattern="[+-]?([0-9]*[.])?[0-9]+" required>
+        
+    </div>
+    <div class="items">
+    
+        <b class="input1">Publisher Id</b>
+        <input class="input" v-model="publisherid" placeholder="publisher id" pattern="[0-9]+" required>
+        
+    </div>
+    <div class="items">
+    
+        <b class="input1">User Id</b>
+        <input class="input" v-model="userid" placeholder="user id" pattern="[0-9]+" required>
         
     </div>
     <div class="items"style=" justify-content: center;">
@@ -111,17 +170,20 @@
 
     <div class="items">
     
-        <input class="input" v-model="title" placeholder="title" required>
+        <b class="input1">All</b>
+        <input class="input" v-model="quantity" placeholder="quantity" pattern="[0-9]+" required>
         
     </div>
     <div class="items">
     
-        <input class="input" v-model="author" placeholder="author" required>
+        <b class="input1">Avilable</b>
+        <input class="input" v-model="aquantity" placeholder="avilable" pattern="[0-9]+" required>
         
     </div>
     <div class="items">
     
-        <input class="input" v-model="price" placeholder="price" required>
+        <b class="input1">Price</b>
+        <input class="input" v-model="price" placeholder="price" pattern="[+-]?([0-9]*[.])?[0-9]+" required>
         
     </div>
 

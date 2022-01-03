@@ -69,7 +69,7 @@ li a span:hover {
 
   }
   .input{
-    width: 100%;
+    width: 50%;
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
@@ -85,6 +85,7 @@ li a span:hover {
 
 /* CSS */
 .button-21 {
+  margin-bottom: 2%;
   align-items: center;
   appearance: none;
   background-color: #3EB2FD;
@@ -121,8 +122,13 @@ li a span:hover {
 
 .button-21:hover {
   background-position: -20px -20px;
+  
 }
 
 .button-21:focus:not(:active) {
   box-shadow: rgba(40, 170, 255, 0.25) 0 0 0 .125em;
+}
+.input1{
+  width: 25%;
+  align-self: center;
 }
